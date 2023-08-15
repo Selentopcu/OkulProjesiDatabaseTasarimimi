@@ -1,0 +1,132 @@
+USE [OkulProjesiDatabaseTasarimi]
+GO
+/****** Object:  Table [dbo].[Classes]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Classes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[SınıfId] [int] NOT NULL,
+	[ClassName] [varchar](50) NOT NULL,
+	[ClassTeacherId] [int] NOT NULL,
+ CONSTRAINT [PK_Classes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Exams]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Exams](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StudentId] [int] NOT NULL,
+	[ExamDate] [datetime] NOT NULL,
+	[Exam1] [int] NOT NULL,
+	[Exam2] [int] NOT NULL,
+	[Exam3] [int] NOT NULL,
+ CONSTRAINT [PK_Exams] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Lessons]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Lessons](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[TeacherId] [int] NOT NULL,
+ CONSTRAINT [PK_Lessons] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SchoolManagers]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SchoolManagers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[PersonId] [varchar](50) NOT NULL,
+	[Name] [int] NOT NULL,
+	[Surname] [int] NOT NULL,
+	[PhoneNumber] [varchar](50) NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[Graduation] [varchar](max) NOT NULL,
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_SchoolManagers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[StudentAttendances]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StudentAttendances](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StudentId] [int] NOT NULL,
+	[TeacherId] [int] NOT NULL,
+	[CourseId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+ CONSTRAINT [PK_StudentAttendances] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Students]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Students](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Surname] [nchar](10) NULL,
+	[İdentityNumber] [char](11) NOT NULL,
+	[PhoneNumber] [varchar](max) NOT NULL,
+	[Address] [varchar](max) NOT NULL,
+	[ClassId] [int] NOT NULL,
+	[BirthDate] [datetime] NOT NULL,
+	[TeacherId] [int] NOT NULL,
+ CONSTRAINT [PK_Students] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Teachers]    Script Date: 14.08.2023 17:11:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Teachers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[TeacherSurname] [nvarchar](50) NOT NULL,
+	[PhoneNumber] [varchar](max) NOT NULL,
+	[Email] [varchar](max) NOT NULL,
+	[Password] [varchar](max) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[Brunch] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Teachers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
